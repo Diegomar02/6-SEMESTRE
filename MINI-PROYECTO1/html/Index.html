@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juegos Para Niños</title>
+    <script src='../script.js'></script>
+    <link rel="shortcut icon" href="../images/Icon.png" type="image/x-icon">
+    <link rel="stylesheet" href="../css/estilo.css">
+    <link rel="stylesheet" href="http://unpkg.com/boxicons@2.1.0/css/boxicons.min.css">
+    <link rel="stylesheet" href="../css/swiper-bundle.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css" />
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.min.css" />
+    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+</head>
+
+<body>
+    <div class="progress">
+        <div class="progress-bar" id="scroll-bar"></div>
+    </div>
+    <header>
+        <div class="nav container">
+            <a href="Inicio.html" class="logo">Juegos Para<span> Todos</span></a>
+            <div class="nav-icons">
+                <i class="bx bx-bell bx-tada" id="bell-icon"><span></span></i>
+                <i class="bx bxs-download" type="button" onclick="boton4()"></i>
+                <div class="menu-icon">
+                    <div class="line1"></div>
+                    <div class="line2"></div>
+                    <div class="line3"></div>
+                </div>
+            </div>
+            <div class="menu">
+                <img src="../images/I'M JUST A STONE.gif" alt="">
+                <div class="navbar">
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="https://store.epicgames.com/es-ES/" type="button" onclick="boton1();return true;">Tendencias</a></li>
+                    <li><a href="#nuevo" type="button" onclick="boton2()">Nuevos Juegos</a></li>
+                    <li><a href="#contacto" type="button" onclick="boton3()">Contactenos</a></li>
+                    <li><a href="../html/creditos.html">Creditos</a></li>
+                </div>
+            </div>
+            <div class="notification">
+                <div class="notification-box">
+                    <i class="bx bxs-check-circle"></i>
+                    <p>Juegos gratuitos siempre.</p>
+                </div>
+                <div class="notification-box box-color">
+                    <i class="bx bxs-x-circle"></i>
+                    <p>Renueva tu mebresia.</p>
+                </div>
+            </div>
+        </div>
+    </header>
+    <section class="home container" id="home">
+        <img src="../images/Gatos.png" alt="">
+        <div class="home-text">
+            <h1>COLOCA TU NOMBRE</h1>
+            <input type="text" id="jugador"/>;
+            <a href="juego.html">
+                <input type="button" onclick="guardarDatos()" class="btn" value="Juega ahora">
+            </a>
+            <a href="../records.html" class="btn">Records</a>
+    
+        </div>
+    </section>
+    <section class="trending container" id="trending">
+        <div class="heading">
+            <i class="bx bxs-flame"></i>
+            <h2>Juegos +18</h2>
+        </div>
+        <div class="trending-content swiper">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <div class="box">
+                        <img src="../images/Duck Hunt.png" alt="">
+                        <div class="box-text">
+                            <h2>Dunk Hunt</h2>
+                            <h3>Accion</h3>
+                            <div class="rating-download">
+                                <div class="rating">
+                                    <i class="bx bxs-star"></i>
+                                    <span>4.7</span>
+                                </div>
+                                <a href="#" class="box-btn"><i class="bx bx-down-arrow-alt"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="box">
+                        <img src="../images/Fortnite .jpg" alt="">
+                        <div class="box-text">
+                            <h2>Fornite</h2>
+                            <h3>Accion</h3>
+                            <div class="rating-download">
+                                <div class="rating">
+                                    <i class="bx bxs-star"></i>
+                                    <span>4.7</span>
+                                </div>
+                                <a href="#" class="box-btn"><i class="bx bx-down-arrow-alt"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="box">
+                        <img src="../images/Mario.jpg" alt="">
+                        <div class="box-text">
+                            <h2>Mario Bros</h2>
+                            <h3>Aventra</h3>
+                            <div class="rating-download">
+                                <div class="rating">
+                                    <i class="bx bxs-star"></i>
+                                    <span>4.7</span>
+                                </div>
+                                <a href="#" class="box-btn"><i class="bx bx-down-arrow-alt"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="box">
+                        <img src="../images/Zelda.jpg" alt="">
+                        <div class="box-text">
+                            <h2>Ocarina Of Time</h2>
+                            <h3>Estrategia</h3>
+                            <div class="rating-download">
+                                <div class="rating">
+                                    <i class="bx bxs-star"></i>
+                                    <span>5.0</span>
+                                </div>
+                                <a href="#" class="box-btn"><i class="bx bx-down-arrow-alt"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="box">
+                        <img src="../images/THE 1975 .jpg" alt="">
+                        <div class="box-text">
+                            <h2>THE 1975</h2>
+                            <h3>Música</h3>
+                            <div class="rating-download">
+                                <div class="rating">
+                                    <i class="bx bxs-star"></i>
+                                    <span>5.0</span>
+                                </div>
+                                <a href="#" class="box-btn"><i class="bx bx-down-arrow-alt"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--slider 6-->
+                <div class="swiper-slide">
+                    <div class="box">
+                        <img src="../images/Minecraft.png" alt="">
+                        <div class="box-text">
+                            <h2>Minecraft</h2>
+                            <h3>Consrucción</h3>
+                            <div class="rating-download">
+                                <div class="rating">
+                                    <i class="bx bxs-star"></i>
+                                    <span>4.6</span>
+                                </div>
+                                <a href="#" class="box-btn"><i class="bx bx-down-arrow-alt"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="box">
+                        <img src="../images/Warzone 2_0.jpg" alt="">
+                        <div class="box-text">
+                            <h2>Warzon 2.0</h2>
+                            <h3>Accion</h3>
+                            <div class="rating-download">
+                                <div class="rating">
+                                    <i class="bx bxs-star"></i>
+                                    <span>5.0</span>
+                                </div>
+                                <a href="#" class="box-btn"><i class="bx bx-down-arrow-alt"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="box">
+                        <img src="../images/cups.jpg" alt="">
+                        <div class="box-text">
+                            <h2>Cup Head</h2>
+                            <h3>Accion</h3>
+                            <div class="rating-download">
+                                <div class="rating">
+                                    <i class="bx bxs-star"></i>
+                                    <span>4.8</span>
+                                </div>
+                                <a href="#" class="box-btn"><i class="bx bx-down-arrow-alt"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <Footer>
+        <div class="copyright container">
+            <a href="#" class="logo">Juegos Para<span>Todos</span></a>
+        </div>
+    </Footer>
+        <script src="../Js/swiper-bundle.min.js"></script>
+        <script src="../Js/botones.js"></script>
+        <script src="../Js/main.js"></script>
+</body>
+
+</html>

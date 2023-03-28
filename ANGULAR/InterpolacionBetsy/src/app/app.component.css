@@ -1,0 +1,10 @@
+#titulo{
+    padding-top: 30px;
+    text-align: center;
+}
+
+#contenedor{
+    display: flex;
+    justify-content: space-around;
+    padding-top: 30px;
+}

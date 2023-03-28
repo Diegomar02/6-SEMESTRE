@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>CARTO.js Category dataview example</title>
+    <!-- Include Leaflet 1.2.0 Library -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js"></script>
+    <!-- Fonts -->
+    <!-- <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700' rel='stylesheet' type='text/css'> -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,600,700" rel="stylesheet" type='text/css'>
+    <!-- Include CARTO.js Library -->
+    <script src="https://cdn.rawgit.com/CartoDB/cartodb.js/@4.0.0-alpha.28/carto.js"></script>
+
+    <!-- emojis! -->
+    <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
+
+    <style>
+      * { margin:0; padding:0; }
+      html { box-sizing:border-box; height:100%; }
+    /*  body { background:#f2f6f9; height:100%; font-family:"Open sans", Helvetica, Arial, sans-serif; }*/
+      body { background:#f2f6f9; height:100%; font-family: 'Roboto', sans-serif; }
+      
+      #container { display:flex; width:100%; height:100%; }
+      #map { flex:1; margin:0px; }
+      #widgets { width:300px; margin:10px 10px 10px 0; }
+      .widget { background:white; padding:10px; margin-bottom:10px; }
+      .widget h1 { font-size:1.2em; }
+      .widget-category li { margin:10px 0 0 30px; }
+      button { background-color:#F15743; width: 100%; padding: 10px; margin: 2px; color: #FFF; border: none; font-weight: bold; }
+    </style>
+  </head>
+  <body>
+    <div id="container">
+      <div id="map"></div>
+      <div id="widgets">
+        <div id="populatedPlacesWidget" class="widget widget-category">
+            <h1>Diego Marquez Gomez</h1>
+          <h1>Fires By Category</h1>
+          <ul class="js-fires_cat">
+          </ul>
+        </div>
+        <div class="widget">
+          <input id="filterCheckbox" type="checkbox" onclick="applyBoundingBox(this);">
+          <label for="filterCheckbox"><b>Apply Bounding Box Filter</b></label>
+        </div>
+        <button id="btnBiggest">top 100 fires by size</button>
+      </div>
+    </div>
+    <script>
+      // 1. Setting up the Leaflet Map
+      // 1.1 Creating the Leaflet Map
+      var map = L.map('map').setView([42.877742, -97.380979], 5);
+      // 1.2 Adding basemap and labels layers
+      // Adding Voyager Basemap
+      L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/dark_nolabels/{z}/{x}/{y}.png', {
+        maxZoom: 18,
+        attribution: '&copy;<a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, &copy;<a href="https://carto.com/attribution">CARTO</a>'
+      }).addTo(map);
+      // // Adding Voyager Labels
+      // L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager_only_labels/{z}/{x}/{y}.png', {
+      //   maxZoom: 18,
+      //   attribution: '&copy;<a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, &copy;<a href="https://carto.com/attribution">CARTO</a>',
+      //   zIndex: 100
+      // }).addTo(map);
+      // 2 Defining a carto.Client
+      var client = new carto.Client({
+        apiKey: '8b831d5ece6d5a6d5d567a4a23449406f726e435',
+        username: 'parksgps'
+      });
+      // 3. Displaying countries and cities on the map
+      // 3.1 Defining the layers
+      // European Countries layer
+      // var wildfiresDataset = new carto.source.Dataset('parksgps.wildfres_2006_present');
+      var query = 'SELECT * FROM parksgps.wildfres_2006_present';
+      var wildfiresDataset = new carto.source.SQL(query);
+      var wildfiresStyle = new carto.style.CartoCSS(`
+        #layer {
+		  marker-width: 1.5;
+		  marker-fill: ramp([stat_cause_descr], (#5F4690, #1D6996, #38A6A5, #0F8554, #73AF48, #EDAD08, #E17C05, #CC503E, #94346E, #6F4070, #666666), ("Debris Burning", "Miscellaneous", "Arson", "Lightning", "Missing/Undefined", "Equipment Use", "Campfire", "Children", "Smoking", "Railroad"), "=");
+		  marker-fill-opacity: 1;
+		  marker-allow-overlap: true;
+		  marker-line-width: 0;
+		  marker-line-color: #FFFFFF;
+		  marker-line-opacity: 1;
+		  [zoom>5]{
+		  	 marker-width: 2;
+		  	 marker-fill-opacity: 0.9;
+		  }
+		   [zoom>10]{
+		  	 marker-width: 5;
+		  	 marker-fill-opacity: 0.9;
+		  }
+		}`);
+    var bigWildfiresStyle = new carto.style.CartoCSS(`
+      #layer {
+    marker-width: ramp([fire_size], range(4, 40), equal(10));
+    marker-fill: ramp([stat_cause_descr], (#5F4690, #1D6996, #38A6A5, #0F8554, #73AF48, #EDAD08, #E17C05, #CC503E, #94346E, #6F4070, #666666), ("Debris Burning", "Miscellaneous", "Arson", "Lightning", "Missing/Undefined", "Equipment Use", "Campfire", "Children", "Smoking", "Railroad"), "=");
+    marker-fill-opacity: 1;
+    marker-allow-overlap: true;
+    marker-line-width: 0;
+    marker-line-color: #FFFFFF;
+    marker-line-opacity: 1;
+    [zoom>5]{
+       marker-width: 2;
+       marker-fill-opacity: 0.9;
+    }
+     [zoom>10]{
+       marker-width: 5;
+       marker-fill-opacity: 0.9;
+    }
+    }`);
+      var wildfires = new carto.layer.Layer(wildfiresDataset, wildfiresStyle, {
+          featureOverColumns: ['fire_name', 'fire_size', 'fire_year']
+        });
+      // 3.2 Adding the layers to the client
+      client.addLayers([ wildfires ]);
+      // // 3.3. Adding the layers to the map
+      client.getLeafletLayer().addTo(map);
+      var popup = L.popup();
+      wildfires.on('featureOver', function (featureEvent) {
+        popup.setLatLng(featureEvent.latLng);
+        popup.setContent(`<h2>Fire Name: ${featureEvent.data.fire_name}</h2>
+        <i class="em em-fire" style="width: ${Math.sqrt(Math.ceil(featureEvent.data.fire_size))+20}px;
+                            height: ${Math.sqrt(Math.ceil(featureEvent.data.fire_size))+20}px;"></i>
+          <p style="font-size:16px";><strong>Fire size (acres):</strong> ${featureEvent.data.fire_size.toFixed(2)}</p>
+          <p style="font-size:16px";><strong>Year of Discovery:</strong> ${featureEvent.data.fire_year}</p>
+          <p>`);
+        popup.openOn(map);
+      });
+      wildfires.on('featureOut', function (featureEvent) {
+        popup.removeFrom(map);
+      });
+      // When click on button1 --> the popup will show top 100 fires.
+      document.querySelector('#btnBiggest').addEventListener('click', () => {
+        wildfiresDataset.setQuery(query + ' ORDER BY fire_size DESC LIMIT 100');
+        wildfires.setStyle(bigWildfiresStyle);
+      });
+      // // 4 Creating a populated places widget
+      // // 4.1 Defining a category dataview
+      // var wildfiresSQL = new carto.source.SQL('SELECT * FROM parksgps.wildfres_2006_present');
+      var wildfiresDataView = new carto.dataview.Category(wildfiresDataset, 'stat_cause_descr', {
+        limit: 10,
+        operation: carto.operation.COUNT
+              });
+      // console.log(wildfiresDataView);
+      // 4.2 Listening to data changes on the dataview
+      // var categoryData ={};
+      wildfiresDataView.on('dataChanged', function (newData) {
+        refreshWildfiresWidget(newData.categories);
+        categoryData =newData.categories;
+      });
+      colorDict = {"Debris Burning":'#5F4690', "Miscellaneous":'#1D6996', "Arson":'#38A6A5', "Lightning":'#0F8554', "Missing/Undefined":'#73AF48', "Equipment Use":'#EDAD08', "Campfire":'#E17C05', "Children":'#CC503E', "Smoking":'#94346E', "Railroad":' #6F4070'}
+      var refreshWildfiresWidget = function (data) {
+        var $widget = document.querySelector('#populatedPlacesWidget');
+        var $wildfiresPlaces = $widget.querySelector('.js-fires_cat');
+        while($wildfiresPlaces.firstChild) {
+          $wildfiresPlaces.removeChild($wildfiresPlaces.firstChild);
+        }
+        if (data) {
+          for (var place of data) {
+            var $li = document.createElement('li');
+            if(colorDict[place.name])
+              $li.style.color = colorDict[place.name];
+            else{
+              $li.style.color ="black";
+            }
+            console.log(colorDict[place.name]);
+            listText =document.createTextNode(place.name + ': ' + place.value);
+            $li.appendChild(listText);
+            $wildfiresPlaces.appendChild($li);
+          }
+        }
+      }
+      // // 4.3 Adding the dataview to the client
+      client.addDataview(wildfiresDataView);
+      // 5 Adding the bounding box filter
+      // 5.1 Defining the bounding box filter for the map
+      var boundingBoxFilter = new carto.filter.BoundingBoxLeaflet(map);
+      // 5.2 Apply the bounding box filter to the dataview
+      var applyBoundingBox = function (event) {
+        if (event.checked) {
+          wildfiresDataView.addFilter(boundingBoxFilter);
+        } else {
+          wildfiresDataView.removeFilter(boundingBoxFilter);
+        }
+      }
+    </script>
+  </body>
+</html>

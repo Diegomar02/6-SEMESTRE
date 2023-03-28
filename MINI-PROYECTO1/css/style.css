@@ -1,0 +1,25 @@
+body {
+    background-color: gray;
+
+}
+
+#nombre {
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: larger;
+    font-style: italic;
+    font-weight: bolder;
+}
+
+#password {
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: larger;
+    font-style: italic;
+    font-weight: bolder;
+}
+
+.etiqueta {
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: larger;
+    font-style: italic;
+    font-weight: bolder;
+}

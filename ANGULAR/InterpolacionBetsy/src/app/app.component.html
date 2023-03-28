@@ -1,0 +1,61 @@
+<div id="titulo">
+  <h1 class="display-5">Binding en una direccion</h1>
+  <h1 class="h5">BETSY JOCELYN ORTEGA LOPEZ</h1>
+</div>
+
+<div id="contenedor">
+  <div class="card mb-3" style="max-width: 540px;">
+    <div class="row g-0">
+      <div class="col-md-4">
+        <img src="../assets/imagenes/perrito1.jpg" class="img-fluid rounded-start" alt="...">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">Perrito 1</h5>
+          <p class="crad-text">Nombre: {{user1.nombre}}</p>
+          <p class="crad-text">Edad: {{user1.edad}}</p>
+          <p class="crad-text">Telefono: {{user1.telefono}}</p>
+          <p class="crad-text">Correo: {{user1.correo}}</p>
+          <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card mb-3" style="max-width: 540px;">
+    <div class="row g-0">
+      <div class="col-md-4">
+        <img src="../assets/imagenes/perrito2.jpg" class="img-fluid rounded-start" alt="...">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">Perrito 2</h5>
+          <p class="card-text" [innerHTML]="'Nombre: '+user2.nombre"></p>
+          <p class="card-text" [innerHTML]="'Edad: '+user2.edad"></p>
+          <p class="card-text" [innerHTML]="'Telefono: '+user2.telefono"></p>
+          <p class="card-text" [innerHTML]="'Correo: '+user2.correo"></p>
+          <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card mb-3" style="max-width: 540px;">
+    <div class="row g-0">
+      <div class="col-md-4">
+        <img src="../assets/imagenes/perrito3.jpg" class="img-fluid rounded-start" alt="...">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">Perrito 3</h5>
+          <p class="crad-text">Nombre: {{user3.nombre}}</p>
+          <p class="crad-text">Edad: {{user3.edad}}</p>
+          <p class="crad-text">Telefono: {{user3.telefono}}</p>
+          <p class="crad-text">Correo: {{user3.correo}}</p>
+          <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+

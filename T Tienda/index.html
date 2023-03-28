@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Vinilos Urrix</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="estilos.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+        integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <script src="js.js"></script>
+
+<body>
+    <table>
+        <br>
+        <h1 class="title" >
+            <center>Nike</center></h1>
+        <div class="row" id="prod">
+            <div class="col-md-4 border">
+                <img src="media/1.webp" alt="" width="350px">
+                <br><br><br><br>
+                <div>
+                    <h2>Nike Jordan 1</h2>
+                </div>
+                <div>
+                    <h3>$4,500</h3>
+                </div>
+                <div>
+                    <button class="btn btn-dark">
+                        <img src="media/pagar.png" onclick="añadir('Jordan 1',4500)" alt=""
+                            width="40px"></button>
+                </div>
+            </div>
+            <div class="col-md-4 border">
+                <img src="media/2.webp" alt="" width="300px">
+                <div>
+                    <h2>Nike Jordan 1</h2>
+                </div>
+                <div>
+                    <h3>$3,000</h3>
+                </div>
+                <div>
+                    <button class="btn btn-dark ">
+                        <img src="media/pagar.png" onclick="añadir('Jordan 1',3000)" alt=""
+                            width="40px"></button>
+                </div>
+
+            </div>
+            <div class="col-md-4 border">
+                <img src="media/3.webp" alt="" width="300px">
+                <div>
+                    <h2>Nike Jordan 1 </h2>
+                </div>
+                <div>
+                    <h3>$2,600</h3>
+                </div>
+                <div>
+                    <button class="btn btn-dark">
+                        <img src="media/pagar.png" onclick="añadir('Jordan 1',2600)" alt=""
+                            width="40px"></button>
+                </div>
+            </div>
+            <div class="col-md-4 border">
+                <img src="media/4.webp" alt="" width="300px">
+                <div>
+                    <h1>Nike Jordan 1 </h1>
+                </div>
+                <div>
+                    <h2>$2,200</h2>
+                </div>
+                <div>
+                    <button class="btn btn-dark">
+                        <img src="media/pagar.png" onclick="añadir('Jordan 1',2200)" alt=""
+                            width="40px"></button>
+                </div>
+            </div>
+            <div class="col-md-4 border">
+                <img src="media/5.webp" alt="" width="400px">
+                <div>
+                    <h1>Nike Jordan 1</h1>
+                </div>
+                <div>
+                    <h2>$3,300</h2>
+                </div>
+                <div>
+                    <button class="btn btn-dark">
+                        <img src="media/pagar.png" onclick="añadir('Jordan 1',3300)" alt=""
+                            width="40px"></button>
+                </div>
+            </div>
+            <div class="col-md-4 border">
+                <img src="media/6.webp" alt="" width="350px">
+                <div>
+                    <h1>Nike Jordan 1</h1>
+                </div>
+                <div>
+                    <h2>$2,700</h2>
+                </div>
+                <div>
+                    <button class="btn btn-dark">
+                        <img src="media/pagar.png" onclick="añadir('Jordan 1',2700)" alt=""
+                            width="40px"></button>
+                </div>
+            </div>
+        </div>
+        <div id="alert"></div>
+        <div id="productos">
+            <table class="table table-hover table-light" id="listado"></table>
+        </div>
+        <br>
+    </table>
+    <h3 id="total" style="color: black;"></h3>
+    <h2 id="tpagar" style="color:black(111, 0, 255)"></h2>
+    <br>
+</body>
+
+</html>

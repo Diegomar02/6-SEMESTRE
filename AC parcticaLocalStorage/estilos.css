@@ -1,0 +1,9 @@
+.ejemplo {
+    margin: auto;
+    width: 40%;
+    
+   }
+   .ejemplo input {
+  margin: 5px 0 10px 0;
+    display: block;
+   }

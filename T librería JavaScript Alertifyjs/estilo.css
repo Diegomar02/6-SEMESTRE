@@ -1,0 +1,24 @@
+
+.boton1,.boton2,.boton3,.boton4{
+    font-size: 20px;
+    text-align: center;
+
+}
+
+.boton1{
+    background-color: aqua;
+}
+
+.boton2{
+    background-color: burlywood;
+}
+
+.boton3{
+    background-color:coral;
+}
+
+.boton4{
+    background-color: thistle;
+
+}
+
