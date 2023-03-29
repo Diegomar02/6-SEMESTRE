@@ -19,9 +19,9 @@ export class AppComponent {
   tirar(){
     this.generar();
     if(this.valor1==this.valor2&&this.valor1==this.valor2)
-      this.resultado="Ganaste";
+      this.resultado="GANASTE DIEGO MARQUEZ GOMEZ";
     else
-      this.resultado="Perdiste";
+      this.resultado="PERDISTE DIEGO MARQUEZ GOMEZ";
   }
 
   generar(){
