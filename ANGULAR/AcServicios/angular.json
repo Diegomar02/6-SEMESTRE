@@ -102,8 +102,5 @@
       }
     }
   },
-  "defaultProject": "servicio1",
-  "cli": {
-    "analytics": false
-  }
+  "defaultProject": "servicio1"
 }
