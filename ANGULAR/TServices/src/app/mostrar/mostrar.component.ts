@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { HeroesService } from '../shared/heroes.service';
 
 @Component({
   selector: 'app-mostrar',
@@ -6,5 +7,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./mostrar.component.css']
 })
 export class MostrarComponent {
+
+  constructor(){}
+
+  ngOnInit():void{
+
+  }
 
 }
