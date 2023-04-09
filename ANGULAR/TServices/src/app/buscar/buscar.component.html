@@ -1,1 +1,28 @@
 <input #msg class="form-control" (keyup.enter)="ver(msg.value)" type="text">
+
+
+<ng-container *ngIf="index !==-1 else noexiste">
+    <div class="card p-3 mt-2">
+        <div class="card-block">
+            <div class="card-title">
+                <p>Nombre:{{datos.nombre}}</p>
+            </div>
+            <div class="text">
+                <p>Biografia:{{datos.bio}}</p>
+            </div>
+            <div class="text">
+                <p>Casa:{{datos.casa}}</p>
+            </div>
+            <div class="text">
+                <p><small>Aparicio:{{datos.aparicion}}</small>></p>
+            </div>
+            <img [src]="datos.img" alt="" class="card-img img-fluid">
+        </div>
+    </div>
+
+
+</ng-container>
+
+<ng-template #noexiste>
+    <p>{{mensaje}}</p>
+</ng-template>

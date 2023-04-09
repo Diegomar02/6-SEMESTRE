@@ -9,6 +9,10 @@ import { HeroesService,Heroe } from '../shared/heroes.service';
 export class BuscarComponent {
 
   heroes:Heroe[];
+  index:number=-1;
+  datos!:Heroe;
+  mensaje:string="";
+  
 
   constructor(public servicio: HeroesService){
     this.heroes=this.servicio.getHeroes();
@@ -18,6 +22,18 @@ export class BuscarComponent {
 
   ver(aux:string){
     console.log("Estoy en el metodo ver"+aux);
+    this.index=this.heroes.findIndex(p=>p.nombre===aux);
+    console.log(this.index);
+    if(this.index!==-1){
+      this.datos=this.heroes[this.index];
+    }
+    else{
+      this.mensaje="El heroe no existe"; 
+      console.log(this.mensaje);
+      setTimeout(()=>{
+        this.mensaje="";
+      },2000);
+    }
   }
 
   ngOnInit():void{
