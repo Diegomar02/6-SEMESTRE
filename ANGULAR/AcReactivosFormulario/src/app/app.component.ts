@@ -10,9 +10,9 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 export class AppComponent {
   forma:FormGroup;
   usuario:any={
-    nombre:"Betsy",
-    apellido:"Jocelyn",
-    correo:"betsy@gmail.com"
+    nombre:"Diego",
+    apellido:"Marquez",
+    correo:"dm1455929@gmail.com"
   }
 
   title = 'AcReactivosFormulario';
