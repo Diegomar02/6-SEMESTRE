@@ -9,18 +9,32 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 export class AppComponent {
   forma:FormGroup;
+  usuario:any={
+    nombre:"Diego",
+    apellido:"Marquez",
+    correo:"dm1455929@gmail.com"
+  }
+
   title = 'AcReactivosFormulario';
 
   constructor(){
     this.forma = new FormGroup({
-      'nombre':new FormControl('Diego',Validators.minLength(3)),
-      'apellido':new FormControl('Marquez',Validators.required),
-      'correo':new FormControl('dm1455929@gmail.com',Validators.email)
+      'nombre':new FormControl('',[Validators.required,Validators.minLength(3)]),
+      'apellido':new FormControl('',[Validators.required,this.noPerez]),
+      'correo':new FormControl('',[Validators.required,Validators.email])
     })
+    this.forma.setValue(this.usuario);
   }
   guardarCambios():void{
-    console.log("metodo guardarCambios");
     console.log(this.forma.value);
     console.log(this.forma);
+    this.forma.reset(this.usuario);
   }
+
+  noPerez(control:FormControl):{[s:string]:boolean}| null { if(control.value==="Perez"){
+    return{
+      noSolano:true
+    } 
+  }
+  return null }
 }
