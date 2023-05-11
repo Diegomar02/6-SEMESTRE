@@ -1,0 +1,79 @@
+/*Estilos header*/
+  .header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    background-color: #cdcdcd;
+  }
+
+  /*Estilos menu*/
+  .menu {
+    background:white;
+    width: 100%;
+   
+    z-index: 100;
+  }
+
+  nav {
+    float: left;
+    border: 10px;
+  }
+
+  nav ul {
+    list-style: none;
+    overflow: hidden; 
+  }
+
+  nav ul li {
+    float: left;
+    font-family: Arial, Helvetica, sans-serif;;
+    font-size: 20px;
+  }
+
+  nav ul li a {
+    display: block; 
+    padding: 10px;
+    color: black;
+    text-decoration: none;
+    overflow: hidden;
+    display: block;
+    padding: 10px 96px;
+  }
+
+  nav ul li:hover {
+    background: #FF5A5F;
+    
+  }
+
+
+
+
+
+
+  .container {
+    max-width: 1224px;
+    margin: 0 auto;
+ }
+ 
+ img {
+    width: 415px;
+    object-fit: contain;
+    border-radius: 10px;
+    margin-left: 10px;
+    margin-right: 10px ;
+    margin: 23px;
+ }
+ 
+ figure {
+    margin: 0;
+ }
+
+ .gallery-container {
+  display: grid;
+  grid-template-columns: repeat(3, 2fr);
+  grid-gap: 20rem 1rem;
+  grid-template-rows: masonry;
+}
