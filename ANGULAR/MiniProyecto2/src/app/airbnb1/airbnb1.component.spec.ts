@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { Airbnb1Component } from './airbnb1.component';
 
 describe('Airbnb1Component', () => {
