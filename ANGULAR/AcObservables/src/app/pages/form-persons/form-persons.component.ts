@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PersonsService } from 'src/app/services/persons.service';
-
+import { PersonModel } from 'src/app/models/person.model';
+import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-form-persons',
   templateUrl: './form-persons.component.html',
@@ -8,17 +9,73 @@ import { PersonsService } from 'src/app/services/persons.service';
 })
 export class FormPersonsComponent {
 
-  editMode: boolean=false;
+  editMode: boolean = false;
 
-  id: number=0;
-  name: string="";
-  lastname: string="";
-  contact: string="";
-  uid: string="";
+  sub_person!: Subscription;
 
-  constructor(private personsService:PersonsService){ }
+  id: number = 0;
+  name: string = "";
+  lastname: string = "";
+  contact: string = "";
+  uid: string = "";
 
-  ngOnInit(): void{
+  constructor(private personsService: PersonsService) { }
+
+  ngOnInit(): void {
+    this.fnSubscribeToPerson();
+  }
+
+  ngOnDestroy() {
+    if (this.sub_person) {
+      this.sub_person.unsubscribe();
+    }
+  }
+
+  fnSubscribeToPerson() {
+    this.sub_person = this.personsService._person.subscribe(person => {
+      if (person) {
+        //Si el objeto tiene datos es porque se quieren editar
+      } else {
+        this.editMode = false;
+        this.fnCleanForm();
+      }
+    });
+  }
+
+  fnValidData(): boolean {
+    let valid: boolean = true; if (!this.name) {
+      console.log('Falta nombre') 
+      valid = false;
+    }
+    if (!this.lastname) {
+      console.log('Falta apellido')
+      valid = false;
+    }
+    if (!this.contact) {
+      console.log('Falta contacto') 
+      valid = false;
+    }
+    return valid;
+  }
+  fnCleanForm() {
+    this.id = 0;
+    this.name = '';
+    this.lastname = '';
+    this.contact = '';
+    this.uid = ''
+  }
+  fnSave(): void {
+    if (!this.fnValidData()) {
+      return;
+    }
+    let person: PersonModel = {
+      _name: this.name, _lastname: this.lastname, _contact: this.contact
+    } as PersonModel;
+    if (this.editMode) {
+      //edicion
+    } else {
+      this.personsService.fnAddPerson(person); this.fnCleanForm();
+    }
   }
 
 }

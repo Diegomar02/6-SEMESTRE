@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { ControlPersonsComponent } from './pages/control-persons/control-persons.component';
 import { FormPersonsComponent } from './pages/form-persons/form-persons.component';
 import { ListPersonsComponent } from './pages/list-persons/list-persons.component';
-
+import {FormsModule} from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
@@ -16,7 +16,8 @@ import { ListPersonsComponent } from './pages/list-persons/list-persons.componen
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
