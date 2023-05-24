@@ -5,7 +5,6 @@ const port = process.env.PORT || 3000;
 const misRutas = require("./rutas/rutas");
 const cors = require("cors");
 
-
 app.use('/', misRutas);
 
 app.use(bodyParser.urlencoded({ extended:false}));

@@ -3,11 +3,11 @@ const router = express.Router();
 const cuadrado = require("../calculos");
 
 router.get('/', (req,res) => {
-    res.send({message:"hola mundo soy ANA LAURA JIMENEZ DIAZ"});
+    res.send({message:"hola mundo soy Diego Marquez "});
    });
 
    router.get('/ayuda', (req,res) => {
-    res.send({message:"En que te ayudo soy ANA LAURA JIMENEZ DIAZ "});
+    res.send({message:"En que te ayudo soy Diego Marquez "});
    });
    
    router.get('/ayuda/:name', (req,res) => {
