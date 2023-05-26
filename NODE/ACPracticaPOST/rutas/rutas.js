@@ -3,7 +3,7 @@ const router = express.Router();
 const cuadrado = require("../calculos");
 
 router.get('/', (req,res) => {
-    res.send({message:"hola mundo soy Diego Marquez "});
+    res.sendFile(process.cwd()+"/public/index.html");
    });
 
    router.get('/ayuda', (req,res) => {

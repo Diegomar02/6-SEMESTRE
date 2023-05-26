@@ -6,9 +6,12 @@ const misRutas = require("./rutas/rutas");
 const cors = require("cors");
 
 app.use('/', misRutas);
-
 app.use(bodyParser.urlencoded({ extended:false}));
 app.use(bodyParser.json());
+
+app.use(express.static(process.cwd()+"/public/"));
+
+
 app.use(cors());
 
 
