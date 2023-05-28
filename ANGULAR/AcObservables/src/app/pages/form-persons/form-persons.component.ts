@@ -31,10 +31,19 @@ export class FormPersonsComponent {
     }
   }
 
+  fnLoadPerson(person: PersonModel) {
+    this.editMode = true;
+    this.name = person._name;
+    this.lastname = person._lastname;
+    this.contact = person._contact;
+    this.uid = person._uid;
+  }
+
   fnSubscribeToPerson() {
     this.sub_person = this.personsService._person.subscribe(person => {
       if (person) {
         //Si el objeto tiene datos es porque se quieren editar
+        this.fnLoadPerson(person);
       } else {
         this.editMode = false;
         this.fnCleanForm();
@@ -44,7 +53,7 @@ export class FormPersonsComponent {
 
   fnValidData(): boolean {
     let valid: boolean = true; if (!this.name) {
-      console.log('Falta nombre') 
+      console.log('Falta nombre')
       valid = false;
     }
     if (!this.lastname) {
@@ -52,7 +61,7 @@ export class FormPersonsComponent {
       valid = false;
     }
     if (!this.contact) {
-      console.log('Falta contacto') 
+      console.log('Falta contacto')
       valid = false;
     }
     return valid;
@@ -73,8 +82,11 @@ export class FormPersonsComponent {
     } as PersonModel;
     if (this.editMode) {
       //edicion
+      person._uid=this.uid
+      this.personsService.fnEditPerson(person)
     } else {
-      this.personsService.fnAddPerson(person); this.fnCleanForm();
+      this.personsService.fnAddPerson(person); 
+      this.fnCleanForm();
     }
   }
 
