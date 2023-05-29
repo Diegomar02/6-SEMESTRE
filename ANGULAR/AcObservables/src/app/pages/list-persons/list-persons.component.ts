@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
 import { PersonModel } from 'src/app/models/person.model';
 import { PersonsService } from 'src/app/services/persons.service';
@@ -8,28 +8,24 @@ import { PersonsService } from 'src/app/services/persons.service';
   templateUrl: './list-persons.component.html',
   styleUrls: ['./list-persons.component.css']
 })
-export class ListPersonsComponent implements OnInit {
-  _persons!: Observable<PersonModel[]>;
+export class ListPersonsComponent {
 
-  constructor(private personsService: PersonsService) {
+  _persons!:Observable<PersonModel[]>;
+  
+  constructor( private personsService:PersonsService ) {
     this._persons = this.personsService._persons;
   }
-  ngOnInit(): void {
-    throw new Error('Method not implemented.');
-  }
-  fnEditPerson(person: PersonModel) {
+  
+  fnEditPerson(person:PersonModel){
     this.personsService.fnLoadPerson(person);
   }
 
-  fnDeletePerson(person: PersonModel) {
-    this.personsService.fnDeletePerson(person);
-  }
-
-  fnNewPerson() {
+  fnNewPerson(){
     this.personsService.fnResetLoadPerson();
   }
 
-
+  fnDeletePerson(person:PersonModel){
+    this.personsService.fnDeletePerson(person);
+  }
 
 }
-

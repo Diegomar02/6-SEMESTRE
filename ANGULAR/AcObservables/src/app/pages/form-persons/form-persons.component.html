@@ -1,29 +1,26 @@
 <div class="container">
-    <h3>{{editMode==false? 'Crear persona':'Editar persona'}}</h3>
+    <h3>
+        {{!editMode ? 'Crear persona' : 'Editar persona'}}
+    </h3>
     <div class="form-group">
-        <label for=":">Nombre</label>
+        <label for="">Nombre</label>
         <input type="text" class="form-control" [(ngModel)]="name">
     </div>
     <div class="form-group">
-        <label for=":">Apellido</label>
+        <label for="">Apellido</label>
         <input type="text" class="form-control" [(ngModel)]="lastname">
     </div>
     <div class="form-group">
-        <label for=":">Contacto</label>
+        <label for="">Contacto</label>
         <input type="text" class="form-control" [(ngModel)]="contact">
     </div>
     <div class="form-group">
-        <label for=":">UID</label>
+        <label for="">UID</label>
         <input disabled type="text" class="form-control" [(ngModel)]="uid">
-    </div>
+    </div><br>
     <div class="form-group">
         <button class="btn btn-primary" type="button" (click)="fnSave()">
-            {{editMode==false? 'Guardar':'Editar'}}
+            {{!editMode ? 'Guardar' : 'Editar'}}
         </button>
     </div>
-
-
-
-
-
-</div>
+</div><br>
