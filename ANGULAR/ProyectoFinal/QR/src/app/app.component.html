@@ -1,4 +1,13 @@
 <h1>QR CODE</h1>
 
-<qrcode (qrCodeURL)="onCodeChange($event)" [width]="400" qrdata="https://www.nike.com/mx/" [errorCorrectionLevel]="'H'"></qrcode>
-<a [href]="url" download>Descarga QR</a>
+<div>
+    <qrcode (qrCodeURL)="onCodeChange($event)" [width]="200" [qrdata]="link" [errorCorrectionLevel]="'H'" ></qrcode>
+</div>
+<div>
+    <button type="button" class="btn btn-primary" onclick="document.location.reload();">Generar</button>
+</div>
+<br>
+<br>
+<div>
+    <a [href]="url" download>Descarga QR</a>
+</div>
