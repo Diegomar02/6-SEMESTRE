@@ -11,12 +11,14 @@ router.get("/user", [], (req, res) => {
 router.post(
   "/user",
   [
+    body("idUser").not().isEmpty().isString(),
     body("name").not().isEmpty().isString(),
     body("lastname").not().isEmpty().isString(),
     body("contact").not().isEmpty().isString(),
     body("cellphone").not().isEmpty().isString(),
   ],
   (req, res) => {
+    console.log("estoy en el API post");
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       res.json({ success: false, err: JSON.stringify(errors) });
