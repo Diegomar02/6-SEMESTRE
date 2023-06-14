@@ -1,0 +1,160 @@
+<div class="pagina">
+    <h1 style="text-align: center;">Configuracion con retroalimentación</h1>
+    <div  style="text-align: center;" >
+        <img src="https://docplayer.es/docs-images/113/208707563/images/6-2.jpg"
+            alt="Circuito" class="img-fluid">
+    </div>
+    <label for="">Eliga el transistor:</label> <br>
+    <select [(ngModel)]="transistor" (ngModelChange)="onTransistorChange()">
+        <option value="mps2222">MPS2222</option>
+        <option value="tip41">TIP41</option>
+        <option value="bc547">BC547</option>
+      </select>
+    <br><hr style="height:1px;border:none;color:#333;background-color:#333;" />
+    <h3>Obtener Corrientes y Voltajes</h3>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="rc">Valor de Rc:</label>
+                <input type="number" id="rc" class="form-control small-input" [(ngModel)]="rc" required>
+            </div>
+            <div class="form-group">
+                <label for="rb">Valor de Rb:</label>
+                <input type="number" id="rb" class="form-control small-input" [(ngModel)]="rb" required>
+            </div>
+            <div class="form-group">
+                <label for="rb">Valor de Re:</label>
+                <input type="number" id="re" class="form-control small-input" [(ngModel)]="re" required>
+            </div>
+            <div class="form-group">
+                <label for="vcc">Valor de VCC:</label>
+                <input type="number" id="vcc" class="form-control small-input" [(ngModel)]="vcc" required>
+            </div>
+            <div class="form-group">
+                <label for="beta">Valor de Beta:</label>
+                <input type="number" id="beta" class="form-control small-input" [(ngModel)]="BETA" required>
+            </div>
+            <button class="btn btn-primary" (click)="calculate1()">Calcular</button>
+        </div>
+        
+
+    <div *ngIf="result1" class="mt-4">
+        <h2>Resultados:</h2>
+        <table class="table table-striped table-sm">
+            <thead>
+                <tr>
+                    <th>Variable</th>
+                    <th>Valor</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>IB</td>
+                    <td>{{ result1.ib }} A</td>
+                </tr>
+                <tr>
+                    <td>IC</td>
+                    <td>{{ result1.ic }} A</td>
+                </tr>
+                <tr>
+                    <td>IE</td>
+                    <td>{{ result1.ie }} A</td>
+                </tr>
+                <tr>
+                    <td>VRB</td>
+                    <td>{{ result1.vrb }} V</td>
+                </tr>
+                <tr>
+                    <td>VRC</td>
+                    <td>{{ result1.vrc }} V</td>
+                </tr>
+                <tr>
+                    <td>VRE</td>
+                    <td>{{ result1.vre }} V</td>
+                </tr>
+                <tr>
+                    <td>VC</td>
+                    <td>{{ result1.vc }} V</td>
+                </tr>
+                <tr>
+                    <td>VB</td>
+                    <td>{{ result1.vb }} V</td>
+                </tr>
+                <tr>
+                    <td>VE</td>
+                    <td>{{ result1.ve }} V</td>
+                </tr>
+                <tr>
+                    <td>VCE</td>
+                    <td>{{ result1.vce }} V</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    </div>
+    <br><hr style="height:1px;border:none;color:#333;background-color:#333;" />
+     <h3>Obtener Resistencias</h3>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="ib">Valor de IB:</label>
+                <input type="number" id="ib" class="form-control small-input" [(ngModel)]="ib" required>
+            </div>
+            <div class="form-group">
+                <label for="ic">Valor de IC:</label>
+                <input type="number" id="ic" class="form-control small-input" [(ngModel)]="ic" required>
+            </div>
+            <div class="form-group">
+                <label for="ie">Valor de IE:</label>
+                <input type="number" id="ie" class="form-control small-input" [(ngModel)]="ie" required>
+            </div>
+            <div class="form-group">
+                <label for="vcc">Valor de VCC:</label>
+                <input type="number" id="vcc" class="form-control small-input" [(ngModel)]="vcc">
+            </div>
+            <div class="form-group">
+                <label for="vrb">Valor de VRB:</label>
+                <input type="number" id="vrb" class="form-control small-input" [(ngModel)]="vrb" required>
+            </div>
+            <div class="form-group">
+                <label for="vrc">Valor de VRC:</label>
+                <input type="number" id="vrc" class="form-control small-input" [(ngModel)]="vrc" required>
+            </div>
+            <div class="form-group">
+                <label for="vrc">Valor de VRE:</label>
+                <input type="number" id="vre" class="form-control small-input" [(ngModel)]="vre" required>
+            </div>
+            <div class="form-group">
+                <label for="vce">Valor de VCE:</label>
+                <input type="number" id="vce" class="form-control small-input" [(ngModel)]="vce">
+            </div>
+
+            <button class="btn btn-primary"  (click)="calculate2()">Calcular</button>
+            </div>
+            <div *ngIf="result2" class="mt-4">
+                <h2>Resultados:</h2>
+                <table class="table table-striped table-sm">
+                    <thead>
+                        <tr>
+                            <th>Variable</th>
+                            <th>Valor</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Rb</td>
+                            <td>{{result2.rb}} Ohms</td>
+                        </tr>
+                        <tr>
+                            <td>Rc</td>
+                            <td>{{result2.rc}} Ohms</td>
+                        </tr>
+                        <tr>
+                            <td>Re</td>
+                            <td>{{result2.re}} Ohms</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+    </div>
+</div>
